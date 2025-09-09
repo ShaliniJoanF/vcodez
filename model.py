@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 import pickle
 
 # Load dataset
-data = pd.read_csv("titanic.csv")
+data = pd.read_csv("titanic.csv.csv")
 
 # Features
 X = data[["Pclass", "Sex", "Age", "SibSp", "Parch", "Fare"]]
@@ -25,4 +25,5 @@ with open("titanic_model.pkl", "wb") as f:
     pickle.dump(model, f)
 
 print("✅ Model trained and saved as titanic_model.pkl")
+
 
