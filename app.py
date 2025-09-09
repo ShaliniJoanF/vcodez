@@ -1,10 +1,7 @@
 import streamlit as st
 import pandas as pd
-import pickle
 
-# Load trained model
-with open("titanic_model.pkl", "rb") as f:
-    model = pickle.load(f)
+
 
 st.set_page_config(page_title="Titanic Survival Predictor", layout="centered")
 
@@ -31,3 +28,4 @@ if st.button("Predict Survival"):
         st.success(f"✅ Survived with probability {prob:.2f}")
     else:
         st.error(f"❌ Did not survive (probability {prob:.2f})")
+
