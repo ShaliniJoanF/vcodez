@@ -4,7 +4,7 @@ from sklearn.linear_model import LinearRegression
 import pickle
 
 
-data = pd.read_csv("/dev/titanic.csv")
+data = pd.read_csv("titanic.csv")
 
 # Select features
 X = data[["Pclass", "Sex", "Age", "Fare"]]
@@ -25,3 +25,4 @@ with open("titanic_linreg.pkl", "wb") as f:
     pickle.dump(model, f)
 
 print("✅ Linear Regression model trained and saved as titanic_linreg.pkl")
+
