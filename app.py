@@ -1,15 +1,24 @@
 import streamlit as st
 import pandas as pd
-import pickle
-
-# Load trained linear regression model
-with open("titanic_linreg.pkl", "rb") as f:
-    model = pickle.load(f)
+from sklearn.linear_model import LinearRegression
 
 st.set_page_config(page_title="Titanic Survival with Linear Regression", layout="centered")
 
 st.title("🚢 Titanic Survival Prediction (Linear Regression)")
-st.write("Enter passenger details to check survival chance (using Linear Regression).")
+st.write("This app trains a Linear Regression model on the Titanic dataset each time it runs.")
+
+# Load dataset
+data = pd.read_csv("titanic.csv")
+
+# Prepare features
+X = data[["Pclass", "Sex", "Age", "SibSp", "Parch", "Fare"]]
+X["Sex"] = X["Sex"].map({"male": 0, "female": 1})
+X = X.fillna(X.mean())
+y = data["Survived"]
+
+# Train model (no pickle)
+model = LinearRegression()
+model.fit(X, y)
 
 # Input form
 pclass = st.selectbox("Passenger Class", [1, 2, 3])
@@ -26,10 +35,10 @@ if st.button("Predict Survival"):
                               columns=["Pclass", "Sex", "Age", "SibSp", "Parch", "Fare"])
     prediction = model.predict(input_data)[0]
 
-    survival = 1 if prediction >= 0.5 else 0  # Thresholding
-    prob = min(max(prediction, 0), 1)  # Clamp between 0 and 1
+    survival = 1 if prediction >= 0.5 else 0  # Threshold
+    prob = min(max(prediction, 0), 1)         # Clamp 0–1
 
     if survival == 1:
-        st.success(f"✅ Likely Survived (predicted value: {prediction:.2f}, prob: {prob:.2f})")
+        st.success(f"✅ Likely Survived (predicted: {prediction:.2f}, probability: {prob:.2f})")
     else:
-        st.error(f"❌ Likely Did not Survive (predicted value: {prediction:.2f}, prob: {prob:.2f})")
+        st.error(f"❌ Likely Did not Survive (predicted: {prediction:.2f}, probability: {prob:.2f})")
