@@ -14,7 +14,7 @@ Pclass = st.number_input("Enter the class position ", min_value=0)
 # Predict button
 if st.button("Predict the survival chances"):
     # Create input array
-    input_data = np.array([[PassengerId, Pclass]) # predict for 1 person, 6 features
+    input_data = np.array([PassengerId, Pclass]) # predict for 1 person, 6 features
 
     # Make prediction
    # prediction = model.predict(input_data)[0]
@@ -22,4 +22,5 @@ if st.button("Predict the survival chances"):
 
     #st.success(f"💰 Estimated Insurance Charges: ₹{prediction:,.2f}")
     st.success(f"💰 Estimated survival chances: ₹{prediction1:,.2f}")
+
 
