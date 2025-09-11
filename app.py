@@ -1,4 +1,4 @@
-%%writefile Linear_survived.py
+
 import streamlit as st
 import numpy as np
 import joblib 
@@ -22,5 +22,6 @@ if st.button("Predict the survival chances"):
 
     #st.success(f"💰 Estimated Insurance Charges: ₹{prediction:,.2f}")
     st.success(f"💰 Estimated survival chances: ₹{prediction1:,.2f}")
+
 
 
