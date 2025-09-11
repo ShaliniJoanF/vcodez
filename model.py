@@ -1,7 +1,5 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
@@ -33,3 +31,4 @@ mse=mean_squared_error(y_pred,y_test)
 r2=r2_score(y_pred,y_test)
 print(mse)
 print(r2)
+
