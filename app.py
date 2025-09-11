@@ -3,7 +3,7 @@ import streamlit as st
 import numpy as np
 import joblib 
 
-model = joblib.load('/content/linear_regression_model.joblib')
+model = joblib.load('linear_regression_model.joblib')
 
 PassengerId= st.number_input("enter the ID please", min_value=0.0, format="%.2f")
 Pclass = st.number_input("Enter the class position ", min_value=0)
@@ -22,6 +22,7 @@ if st.button("Predict the survival chances"):
 
     #st.success(f"💰 Estimated Insurance Charges: ₹{prediction:,.2f}")
     st.success(f"💰 Estimated survival chances: ₹{prediction1:,.2f}")
+
 
 
 
