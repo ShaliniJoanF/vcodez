@@ -8,7 +8,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 import warnings
 warnings.filterwarnings('ignore')
 
-df = pd.read_csv('/titanic.csv')
+df = pd.read_csv('titanic.csv')
 
 
 x= df.drop(['Name','Sex','Ticket','Age','Cabin','Embarked'],axis=1)
@@ -31,4 +31,5 @@ mse=mean_squared_error(y_pred,y_test)
 r2=r2_score(y_pred,y_test)
 print(mse)
 print(r2)
+
 
