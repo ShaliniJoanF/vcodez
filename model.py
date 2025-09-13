@@ -8,30 +8,38 @@ from sklearn.metrics import mean_squared_error, r2_score
 import warnings
 warnings.filterwarnings('ignore')
 
-df = pd.read_csv('titanic.csv')
+# Load dataset
+df = pd.read_csv("titanic.csv")
 
+# Encode 'Sex' instead of dropping it
+df["Sex"] = df["Sex"].map({"male": 0, "female": 1})
 
-x= df.drop(['Name','Sex','Ticket','Age','Cabin','Embarked'],axis=1)
-y=df['Survived']
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=42)
-print(x_train.shape)
-print(x_test.shape)
-print(y_train.shape)
-print(y_test.shape)
+# Select features (drop non-numeric, irrelevant)
+X = df.drop(["Name", "Ticket", "Cabin", "Embarked", "Survived"], axis=1)
+y = df["Survived"]
 
-model=LinearRegression()
-model.fit(x_train,y_train)
-y_pred=model.predict(x_test)
-print(y_pred)
+X=X.dropna()
+y=y[X.index]
 
-concat=pd.concat([x_test,y_test],axis=1)
-print(concat)
+# Train/test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-mse=mean_squared_error(y_pred,y_test)
-r2=r2_score(y_pred,y_test)
-print(mse)
-print(r2)
+print("Train shape:", X_train.shape)
+print("Test shape:", X_test.shape)
 
-joblib.dump(model, 'linear_regression_model.joblib')
+# Train model
+model = LinearRegression()
+model.fit(X_train, y_train)
 
+# Predictions
+y_pred = model.predict(X_test)
 
+# Evaluate
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+print("MSE:", mse)
+print("R2 Score:", r2)
+
+# Save model
+joblib.dump(model, "linear_regression_model.joblib")
+print("✅ Model saved as linear_regression_model.joblib")
