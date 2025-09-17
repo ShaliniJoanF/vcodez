@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import joblib
-import streamlit
+import streamlit as st
 
 # Load dataset
 df = pd.read_csv("Breast Cancer DataSet.csv")
