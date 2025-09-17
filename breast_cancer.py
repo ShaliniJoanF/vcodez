@@ -5,7 +5,7 @@ import joblib
 import streamlit
 
 # Load dataset
-df = pd.read_csv("/content/Breast Cancer DataSet.csv")
+df = pd.read_csv("Breast Cancer DataSet.csv")
 
 # Drop empty column
 df = df.drop(columns=["Unnamed: 32"])
