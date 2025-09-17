@@ -14,7 +14,7 @@ df = df.drop(columns=["Unnamed: 32"])
 df["diagnosis"] = df["diagnosis"].map({"M": 1, "B": 0})
 
 # Features and target
-X = df.drop(columns=["diagnosis"])
+X = df[['radius_mean']]
 y = df["diagnosis"]
 
 # Train-test split
