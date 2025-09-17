@@ -42,6 +42,9 @@ y_pred = model.predict(X_test)
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print(classification_report(y_test, y_pred))
 
+model = joblib.load("breast_cancer_model.pkl")
+features = joblib.load("feature_names.pkl")
+
 st.set_page_config(page_title="Breast Cancer Prediction", layout="wide")
 st.title("🔬 Breast Cancer Diagnosis Prediction")
 st.write("Enter the tumor measurement values to predict if it is **Malignant (Cancerous)** or **Benign (Non-Cancerous)**.")
