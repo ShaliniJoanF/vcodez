@@ -5,7 +5,7 @@ import streamlit
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score,classification_report
-df = pd.read_csv('/content/Breast Cancer DataSet.csv')
+df = pd.read_csv('Breast Cancer DataSet.csv')
 df['diagnosis'] = df['diagnosis'].map({'M': 1, 'B': 0})
 X=df.drop(columns=['diagnosis'])
 y=df['diagnosis']
